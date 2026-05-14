@@ -1,40 +1,204 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WhatsApp Bonos - Oficial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: #000000;
-            /* Resplandor radial dorado de fondo */
-            background-image: radial-gradient(circle at center, #2c2100 0%, #000000 70%);
+            background-image: radial-gradient(circle at center, #2c2100 0%, #000000 80%);
             color: white;
             margin: 0;
             display: flex;
             justify-content: center;
+            align-items: center;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .hero-card {
-            background-color: #0d1124;
-            border: 1px solid #1e293b;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+            background-color: rgba(13, 17, 36, 0.95);
+            border: 1px solid #c49b324d;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
         }
 
+        .boton-animado {
+            background: linear-gradient(135deg, #f7b433, #db9308);
+            color: #000; 
+            font-weight: 800;
+            animation: latido 1.8s infinite ease-in-out;
+        }
+
+        @keyframes latido {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(247, 180, 51, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(247, 180, 51, 0.7); }
+        }
+
+        .stats-bar {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Estilos del Cartel Flotante */
+        #notification-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(20, 20, 20, 0.95);
+            border-left: 4px solid #f7b433;
+            padding: 12px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: translateY(150%);
+            transition: all 0.5s ease;
+            z-index: 9999;
+            max-width: 280px;
+        }
+
+        #notification-toast.show {
+            transform: translateY(0);
+        }
+
+        .user-icon {
+            background: #f7b433;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body class="p-6">
+     <!-- Meta Pixel Code -->
+    <script>
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = 'https://connect.facebook.net/en_US/fbevents.js';
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script');
+        fbq('init', '1841951286680783');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1841951286680783&ev=PageView&noscript=1" />
+    </noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- Notificación Flotante -->
+    <div id="notification-toast">
+        <div class="user-icon" id="toast-icon">J</div>
+        <div>
+            <p id="toast-user" class="text-[11px] font-bold text-white leading-tight"></p>
+            <p id="toast-action" class="text-[10px] text-gray-400"></p>
+        </div>
+    </div>
+
+    <div class="w-full max-w-md flex flex-col items-center">
+        <header class="flex flex-col items-center mb-10">
+            <div class="relative w-28 h-28 mb-6">
+                <div class="absolute inset-0 rounded-full border-2 border-yellow-600/30 flex items-center justify-center bg-black">
+                    <div class="text-center">
+                        <span class="text-2xl font-black text-yellow-500 tracking-tighter uppercase">Hercules</span>
+                        <span class="block text-[8px] text-yellow-600 tracking-[0.3em] font-bold">CASINO ONLINE</span>
+                    </div>
+                </div>
+            </div>
+            <div class="px-5 py-1.5 rounded-full border border-yellow-600/50 text-yellow-500 text-[10px] font-bold uppercase tracking-widest bg-yellow-600/10">
+                Plataforma Verificada
+            </div>
+        </header>
+
+        <section class="hero-card w-full rounded-[40px] p-8 text-center mb-6">
+            <h1 class="text-3xl font-black leading-tight mb-4 uppercase">
+                Juga con <span class="text-[#f7b433]">200%</span><br>de Bono
+            </h1>
+            <p class="text-gray-400 text-xs mb-8 font-medium uppercase tracking-wide">
+                Solicitá tu carga por WhatsApp ahora
+            </p>
+
+            <a href="https://wa.me/5493853010276?text=Hola%20quiero%20mi%20Bono%20del%20200%%20" 
+               class="boton-animado w-full py-5 rounded-2xl flex items-center justify-center gap-3 transition-transform active:scale-95 mb-6" target="_blank" onclick="fbq('trackCustom', 'ClickWhatsApp')">
+                <span class="text-[16px] uppercase">Quiero mi Bono</span>
+            </a>
+
+            <p class="text-yellow-500/80 text-[8px] font-bold tracking-[0.25em] uppercase">
+                Slots • Juegos Crash • Deportes
+            </p>
+        </section>
+
+        <div class="stats-bar w-full rounded-2xl grid grid-cols-3 py-5 px-2 text-center items-center divide-x divide-white/10">
+            <div><p class="text-gray-500 text-[8px] uppercase font-bold mb-1">Mín. Carga</p><p class="text-white font-bold text-[14px]">$3.000</p></div>
+            <div><p class="text-gray-500 text-[8px] uppercase font-bold mb-1">Mín. Retiro</p><p class="text-white font-bold text-[14px]">$6.000</p></div>
+            <div><p class="text-gray-500 text-[8px] uppercase font-bold mb-1">Soporte</p><p class="text-green-500 font-bold text-[14px]">24 HS</p></div>
+        </div>
+
+        <footer class="mt-10">
+            <p class="text-gray-600 text-[10px] text-center opacity-80 uppercase tracking-widest">Solo mayores de 18 años</p>
+        </footer>
+    </div>
+
+    <script>
+        const users = ["Juan P.", "Maria L.", "Ricardo G.", "Sofi_22", "Lucas.Cas", "Hernán R.", "Cande_Win", "Bauti77", "Gabi_M", "Esteban"];
+        const actions = ["acaba de cargar $5.000", "retiró $12.400 con éxito", "acaba de cargar $3.500", "ganó $45.000 en Slots", "retiró $8.200", "cargó $10.000 + BONO"];
         
-.boton-animado {
-    background: linear-gradient(135deg, #ff007f, #7f0);
-    color: red;
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 50px;
+        const toast = document.getElementById('notification-toast');
+        const toastUser = document.getElementById('toast-user');
+        const toastAction = document.getElementById('toast-action');
+        const toastIcon = document.getElementById('toast-icon');
+
+        function showNotification() {
+            // Seleccionar datos aleatorios
+            const randomUser = users[Math.floor(Math.random() * users.length)];
+            const randomAction = actions[Math.floor(Math.random() * actions.length)];
+            
+            // Actualizar contenido
+            toastUser.innerText = randomUser;
+            toastAction.innerText = randomAction;
+            toastIcon.innerText = randomUser.charAt(0);
+
+            // Mostrar el cartel
+            toast.classList.add('show');
+
+            // Ocultar después de 2.5 segundos
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        // Ejecutar cada 4 segundos (1.5s de espera + 2.5s visible)
+        setInterval(showNotification, 4500);
+        
+        // Primera ejecución pequeña demora
+        setTimeout(showNotification, 2000);
+    </script>
+</body>
+</html>    border-radius: 50px;
     cursor: pointer;
     box-shadow: 0 0 15px rgba(255, 0, 127, 0.5);
     /* Aquí aplicamos la animación infinita */
